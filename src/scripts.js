@@ -50,7 +50,7 @@ function displayCityInfo(response) {
     response.data.main.temp
   );
   document.querySelector("#weather-description").innerHTML =
-    response.data.weather[0].description;
+    response.data.weather[0].main;
   document.querySelector("#temp-hi").innerHTML = Math.round(
     response.data.main.temp_max
   );
@@ -66,14 +66,18 @@ function displayCityInfo(response) {
   document.querySelector("#humidity").innerHTML = response.data.main.humidity;
 }
 
-function searchCity(event) {
-  event.preventDefault();
-  let cityName = document.querySelector("#city-input").value;
+function loadPage(cityName) {
   let apiKey = "4cea025489823b86da62835c695c95d3";
   let apiUnit = "metric";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}&units=${apiUnit}`;
 
   axios.get(apiUrl).then(displayCityInfo);
+}
+
+function searchCity(event) {
+  event.preventDefault();
+  let cityName = document.querySelector("#city-input").value;
+  loadPage(cityName);
 }
 
 let buttonSearch = document.querySelector("#button-search");
@@ -116,3 +120,5 @@ function getCurrentPosition(event) {
 
 let buttonCurrentCity = document.querySelector("#button-current");
 buttonCurrentCity.addEventListener("click", getCurrentPosition);
+
+loadPage("Rio de Janeiro");
