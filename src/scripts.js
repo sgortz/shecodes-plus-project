@@ -39,7 +39,7 @@ if (minutes.toString().length == 1) {
 let smallHeading = document.querySelector("#day-hour");
 smallHeading.innerHTML = `${weekday}, ${month} ${dateMonth}, ${hour}:${minutes}`;
 
-// Phase 2 - Show the name of the city typed in the forms
+// Update name of the city, temperature, and sub-menu data with API data
 
 function displayCityInfo(response) {
   document.querySelector(
@@ -61,8 +61,6 @@ function displayCityInfo(response) {
     response.data.wind.speed * 3.6
   );
   document.querySelector("#humidity").innerHTML = response.data.main.humidity;
-
-  console.log(response.data);
 }
 
 function searchCity(event) {
@@ -97,25 +95,21 @@ let clickFahrenheit = document.querySelector("#temperature-fahrenheit");
 clickFahrenheit.addEventListener("click", showTempFahrenheit);
 
 // Make Current City button to show current city & temperature of user
-function showCurrentPosition(event) {
+
+function showCurrentInfo(response) {
+  let latitude = response.coords.latitude;
+  let longitude = response.coords.longitude;
+  let apiKey = "4cea025489823b86da62835c695c95d3";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${apiKey}`;
+
+  axios.get(apiUrl).then(displayCityInfo);
+}
+
+function getCurrentPosition(event) {
   event.preventDefault();
 
-  navigator.geolocation.getCurrentPosition(function (response) {
-    let latitude = response.coords.latitude;
-    let longitude = response.coords.longitude;
-    let apiKey = "4cea025489823b86da62835c695c95d3";
-    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${apiKey}`;
-
-    axios.get(apiUrl).then(function (response) {
-      //console.log(response);
-      let h1 = document.querySelector("h1");
-      h1.innerHTML = `${response.data.name}, ${response.data.sys.country}`;
-      let currentTemperature = document.querySelector("#crnt-tempt");
-      let shortCurrentTemperature = Math.round(response.data.main.temp);
-      currentTemperature.innerHTML = `${shortCurrentTemperature}˚`;
-    });
-  });
+  navigator.geolocation.getCurrentPosition(showCurrentInfo);
 }
 
 let buttonCurrentCity = document.querySelector("#button-current");
-buttonCurrentCity.addEventListener("click", showCurrentPosition);
+buttonCurrentCity.addEventListener("click", getCurrentPosition);
