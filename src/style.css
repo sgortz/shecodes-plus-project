@@ -1,0 +1,91 @@
+* {
+  /* background-color: #f4f4f4; */
+  font-family: avenir;
+  text-align: center;
+}
+
+section {
+  margin: 20px 20px;
+}
+
+a:link,
+a:visited {
+  text-decoration: none;
+  text-emphasis: none;
+  color: black;
+}
+
+li {
+  display: inline-block;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+footer {
+  text-align: right;
+}
+
+.card {
+  margin: 40px, 40px, 0;
+  /* BACKGROUND WHEN MORNING */
+  background-image: linear-gradient(to top, #a8edea 0%, #fed6e3 100%);
+  /* BACKGROUND COLOR IF SUNSET OR SUNRISE
+  background-image: linear-gradient(to top, #a18cd1 0%, #fbc2eb 100%); */
+  /* BACKGROUND COLOR IF CLOUDY OR RAINY
+  background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%); */
+}
+
+.forecast-week,
+.metadata {
+  text-align: center;
+  font-size: 18px;
+}
+
+.main-metadata {
+  font-size: 35px;
+  text-align: left;
+  line-height: 30px;
+}
+.main-icon {
+  font-size: 150px;
+  color: #ffd66b;
+  /* margin: 0 auto;
+  display: inline-block;
+  text-align: center; */
+}
+
+.metadata {
+  line-height: 40px;
+}
+
+.tempt-unit {
+  font-size: 20px;
+}
+
+#city-input {
+  text-align: left;
+}
+
+#day-hour {
+  font-size: 23px;
+}
+
+#crnt-tempt {
+  font-size: 90px;
+  margin: auto;
+  display: inline;
+  padding: 0;
+}
+
+#button-search:visited {
+  color: red;
+}
+
+#city-input {
+  text-transform: capitalize;
+}
