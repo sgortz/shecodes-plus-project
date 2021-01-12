@@ -75,7 +75,7 @@ footer {
   font-size: 23px;
 }
 
-#crnt-tempt {
+.temperature-display {
   font-size: 90px;
   margin: auto;
   display: inline;

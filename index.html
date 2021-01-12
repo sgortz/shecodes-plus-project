@@ -23,7 +23,12 @@
         <div class="card-body">
           <header>
             <form id="form-city">
-              <input type="text" placeholder="Type city here" id="city-input" />
+              <input
+                type="text"
+                placeholder="Type city here"
+                id="city-input"
+                autocomplete="off"
+              />
               <input type="submit" value="Search" id="button-search" />
               <input type="submit" value="Current City" id="button-current" />
             </form>
@@ -40,12 +45,15 @@
             <p class="crnt-weather">
               <i class="fas fa-sun main-icon"></i>
             </p>
-            <div id="crnt-tempt">19˚</div>
-            <small class="tempt-unit">
-              <a href="#" id="temperature-celsius">C</a>
-              /
-              <a href="#" id="temperature-fahrenheit">F</a>
-            </small>
+            <div class="temperature-display">
+              <span id="temperature">19</span>˚
+              </div>
+              <small class="tempt-unit">
+                <a href="#" id="temperature-celsius">C</a>
+                /
+                <a href="#" id="temperature-fahrenheit">F</a>
+              </small>
+            </p>
             <div class="row">
               <div class="col-8 main-metadata"></div>
               <div class="col-4"></div>
@@ -54,23 +62,37 @@
           <ul class="metadata">
             <li>
               <i class="fas fa-temperature-high"></i>
-              Hi-Lo 27˚ | 25˚
+              Hi-Lo
+              <span id="temp-hi">27</span>
+              ˚ | 
+              <span id="temp-lo">25</span>
+              ˚
             </li>
             <li>
               <i class="fas fa-temperature-low"></i>
-              Feels like 30˚
+              Feels like 
+              <span id="feels-like">
+              30
+              </span>
+            ˚
             </li>
             <li>
               <i class="fas fa-umbrella"></i>
-              Chance of rain 0%
+              Chance of rain 
+              0
+              %
             </li>
             <li>
               <i class="fas fa-wind"></i>
-              Wind 10 mph
+              Wind 
+              <span id="wind-speed">10</span>
+               km/h
             </li>
             <li>
               <i class="fas fa-tint"></i>
-              Humidity 90%
+              Humidity 
+              <span id="humidity"></span>
+              %
             </li>
           </ul>
         </div>

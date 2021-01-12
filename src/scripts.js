@@ -37,42 +37,57 @@ if (minutes.toString().length == 1) {
 }
 
 let smallHeading = document.querySelector("#day-hour");
-smallHeading.innerHTML = `${weekday}, ${month} ${dateMonth}, ${hour}:${minutes} pm`;
+smallHeading.innerHTML = `${weekday}, ${month} ${dateMonth}, ${hour}:${minutes}`;
 
 // Phase 2 - Show the name of the city typed in the forms
 
-function searchInputValue(event) {
+function displayCityInfo(response) {
+  document.querySelector(
+    "h1"
+  ).innerHTML = `${response.data.name}, ${response.data.sys.country}`;
+  document.querySelector("#temperature").innerHTML = Math.round(
+    response.data.main.temp
+  );
+  document.querySelector("#temp-hi").innerHTML = Math.round(
+    response.data.main.temp_max
+  );
+  document.querySelector("#temp-lo").innerHTML = Math.round(
+    response.data.main.temp_min
+  );
+  document.querySelector("#feels-like").innerHTML = Math.round(
+    response.data.main.feels_like
+  );
+  document.querySelector("#wind-speed").innerHTML = Math.round(
+    response.data.wind.speed * 3.6
+  );
+  document.querySelector("#humidity").innerHTML = response.data.main.humidity;
+
+  console.log(response.data);
+}
+
+function searchCity(event) {
   event.preventDefault();
-  let showCity = document.querySelector("#city-input");
-  let cityName = showCity.value;
+  let cityName = document.querySelector("#city-input").value;
   let apiKey = "4cea025489823b86da62835c695c95d3";
   let apiUnit = "metric";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}&units=${apiUnit}`;
 
-  axios.get(apiUrl).then(function (response) {
-    let h1 = document.querySelector("h1");
-    h1.innerHTML = `${response.data.name}, ${response.data.sys.country}`;
-    let currentTemp = document.querySelector("#crnt-tempt");
-    let shortCurrentTemp = Math.round(response.data.main.temp);
-    currentTemp.innerHTML = `${shortCurrentTemp}˚`;
-  });
+  axios.get(apiUrl).then(displayCityInfo);
 }
 
 let buttonSearch = document.querySelector("#button-search");
-buttonSearch.addEventListener("click", searchInputValue);
+buttonSearch.addEventListener("click", searchCity);
 
-// Phase 3 - Change the C to F links and show different temperatures
+// Change the C to F links and show different temperatures
 function showTempCelsius(event) {
   event.preventDefault();
-
-  let tempCelsius2 = document.querySelector("#crnt-tempt");
-  tempCelsius2.innerHTML = "19˚";
+  let tempCelsius2 = (document.querySelector("#crnt-tempt").innerHTML = "19˚");
 }
 
 function showTempFahrenheit(event) {
   event.preventDefault();
-  let tempFahrenheit2 = document.querySelector("#crnt-tempt");
-  tempFahrenheit2.innerHTML = "66˚";
+  let tempFahrenheit2 = (document.querySelector("#crnt-tempt").innerHTML =
+    "66˚");
 }
 
 let clickCelsius = document.querySelector("#temperature-celsius");
