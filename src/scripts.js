@@ -42,12 +42,15 @@ smallHeading.innerHTML = `${weekday}, ${month} ${dateMonth}, ${hour}:${minutes}`
 // Update name of the city, temperature, and sub-menu data with API data
 
 function displayCityInfo(response) {
+  console.log(response.data);
   document.querySelector(
     "h1"
   ).innerHTML = `${response.data.name}, ${response.data.sys.country}`;
   document.querySelector("#temperature").innerHTML = Math.round(
     response.data.main.temp
   );
+  document.querySelector("#weather-description").innerHTML =
+    response.data.weather[0].description;
   document.querySelector("#temp-hi").innerHTML = Math.round(
     response.data.main.temp_max
   );
