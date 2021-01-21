@@ -45,15 +45,15 @@
               <small id="day-hour"></small>
             </h2>
             <p class="crnt-weather">
-              <i class="fas fa-sun main-icon"></i>
+              ☀️ <span id="weather-description"></span>
             </p>
             <div class="temperature-display">
               <span id="temperature"></span>
               </div>
               <small class="tempt-unit">
-                <a href="#" id="temperature-celsius">˚C</a>
+                <a href="#" id="temperature-celsius">C</a>
                 /
-                <a href="#" id="temperature-fahrenheit">˚F</a>
+                <a href="#" id="temperature-fahrenheit">F</a>
               </small>
             </p>
             <div class="row">
@@ -63,35 +63,19 @@
           </section>
           <ul class="metadata">
             <li>
-              <i class="fas fa-umbrella"></i>
-              <span id="weather-description"></span> 
-              
+              <i class="fas fa-temperature-low"></i>
+              Feels like 
+              <span id="feels-like"></span>˚
             </li>
             <li>
               <i class="fas fa-temperature-high"></i>
               Hi-Lo
-              <span id="temp-hi"></span>
-              ˚ | 
-              <span id="temp-lo"></span>
-              ˚
-            </li>
-            <li>
-              <i class="fas fa-temperature-low"></i>
-              Feels like 
-              <span id="feels-like"></span>
-            ˚
-            </li>
-            <li>
-              <i class="fas fa-wind"></i>
-              Wind 
-              <span id="wind-speed"></span>
-               km/h
+              <span id="temp-hi"></span>˚| <span id="temp-lo"></span>˚
             </li>
             <li>
               <i class="fas fa-tint"></i>
               Humidity 
-              <span id="humidity"></span>
-              %
+              <span id="humidity"></span>%
             </li>
           </ul>
         </div>

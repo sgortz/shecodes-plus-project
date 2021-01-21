@@ -89,3 +89,8 @@ footer {
 #city-input {
   text-transform: capitalize;
 }
+
+.crnt-weather {
+  font-size: 30px;
+  text-transform: capitalize;
+}

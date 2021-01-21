@@ -50,7 +50,7 @@ function displayCityInfo(response) {
     response.data.main.temp
   );
   document.querySelector("#weather-description").innerHTML =
-    response.data.weather[0].main;
+    response.data.weather[0].description;
   document.querySelector("#temp-hi").innerHTML = Math.round(
     response.data.main.temp_max
   );
@@ -59,9 +59,6 @@ function displayCityInfo(response) {
   );
   document.querySelector("#feels-like").innerHTML = Math.round(
     response.data.main.feels_like
-  );
-  document.querySelector("#wind-speed").innerHTML = Math.round(
-    response.data.wind.speed * 3.6
   );
   document.querySelector("#humidity").innerHTML = response.data.main.humidity;
 }
