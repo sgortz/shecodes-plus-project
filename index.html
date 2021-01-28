@@ -3,20 +3,25 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Weather App</title>
+    <!--CSS Link-->
     <link rel="stylesheet" href="src/style.css" />
+    <!--Bootstrap-->
     <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
-      crossorigin="anonymous"
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
+    crossorigin="anonymous"
     />
+    <!--Font Awesome icons-->
     <script
-      src="https://kit.fontawesome.com/9d8e8e4082.js"
-      crossorigin="anonymous"></script>
+    src="https://kit.fontawesome.com/9d8e8e4082.js"
+    crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+    <!--Google Fonts-->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+    <!--Axios Import-->
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <title>Weather App</title>
   </head>
   <body>
     <div class="container">
@@ -36,40 +41,30 @@
           </header>
           <section>
             <h1>
-              <span class="city"></span>
-              <span class="country"></span>
+              Rio de Janeiro, RJ
             </h1>
 
             <h2>
-              <small id="day-hour"></small>
+              Thur, Jan 28, 16:02
             </h2>
 
-            <p class="crnt-weather">
-              <span class="weather-icon">
-                <img src="#" alt="weather icon">
-              </span>
-            <span id="weather-description">27</span>
+            <p class="weather">
+              <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="weather icon" id="weather-icon">
+              <span id="weather-description">Snow</span>
             </p>
+
            <div class="row">
              <div class="col-2"></div>
-             <div class="col-10">
-               <div class="temperature-display">
-                 <span id="temperature"></span>
-                 <small class="tempt-unit">
-                   <a href="#" id="temperature-celsius">C</a>
-                   /
-                   <a href="#" id="temperature-fahrenheit">F</a>
-                  </small>
-                </div> 
+             <div class="col-10 temperature-display">
+               <span id="temperature"></span>
+               <small class="temperature-unit">
+                 <a href="#" id="temperature-celsius">C</a>
+                 |
+                 <a href="#" id="temperature-fahrenheit">F</a>
+                </small>
               </div>
-               </div>
-              </p>
-
-            <div class="row">
-              <div class="col-8 main-metadata"></div>
-              <div class="col-4"></div>
-            </div>
           </section>
+
           <ul class="metadata">
             <li>
               <i class="fas fa-temperature-low"></i>
@@ -86,38 +81,41 @@
               Humidity 
               <span id="humidity"></span>%
             </li>
+            <li>
+              <span class="wind-speed"> Wind Speed 8 km/h</span>
+            </li>
           </ul>
         </div>
 
         <section class="forecast-week">
           <ul>
             <li class="weekday">
-              <i class="fas fa-cloud-sun"></i>
+              <img src="#" alt="☀️" id="next-day-icon" />
               <div class="next-day">Monday</div>
               <div class="next-day-temp">24˚ | 23˚</div>
             </li>
             <li class="weekday">
-              <i class="fas fa-cloud"></i>
+              <img src="#" alt="☀️" id="second-day-icon" />
               <div class="second-day">Tuesday</div>
               <div class="second-day-temp">22˚ | 19˚</div>
             </li>
             <li class="weekday">
-              <i class="fas fa-cloud-showers-heavy"></i>
+               <img src="#" alt="☀️" id="third-day-icon" />
               <div class="third-day">Wednesday</div>
               <div class="third-day-temp">20˚ | 15˚</div>
             </li>
             <li class="weekday">
-              <i class="fas fa-cloud-sun"></i>
+              <img src="#" alt="☀️" id="fourth-day-icon" />
               <div class="fourth-day">Thursday</div>
               <div class="fourth-day-temp">25˚ | 23˚</div>
             </li>
             <li class="weekday">
-              <i class="fas fa-wind"></i>
+              <img src="#" alt="☀️" id="fifth-day-icon" />
               <div class="fifth-day">Friday</div>
               <div class="fifth-day-temp">30˚ | 27˚</div>
             </li>
             <li class="weekday">
-              <i class="fas fa-sun"></i>
+              <img src="#" alt="☀️" id="sixth-day-icon" />
               <div class="sixth-day">Saturday</div>
               <div class="sixth-day-temp">28˚ | 27˚</div>
             </li>

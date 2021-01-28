@@ -1,8 +1,8 @@
 * {
-  /* background-color: #f4f4f4; */
   font-family: "Open Sans", sans-serif;
   text-align: center;
 }
+
 
 section {
   margin: 20px 20px;
@@ -29,6 +29,9 @@ footer {
   text-align: right;
 }
 
+h2 {
+  font-size: 30px;
+}
 .card {
   margin: 40px, 40px, 0;
   /* BACKGROUND WHEN MORNING */
@@ -62,16 +65,8 @@ footer {
   line-height: 40px;
 }
 
-.tempt-unit {
-  font-size: 20px;
-}
-
 #city-input {
   text-align: left;
-}
-
-#day-hour {
-  font-size: 23px;
 }
 
 .temperature-display {
@@ -82,7 +77,8 @@ footer {
   padding: 0;
 }
 
-.tempt-unit {
+.temperature-unit {
+  font-size: 20px;
   text-align: left;
 }
 
@@ -90,11 +86,7 @@ footer {
   color: red;
 }
 
-/*#city-input {
-  text-transform: capitalize;
-}*/
-
-.crnt-weather {
+.weather {
   font-size: 30px;
   text-transform: capitalize;
 }

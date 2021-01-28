@@ -36,7 +36,7 @@ if (minutes.toString().length == 1) {
   minutes = "0" + minutes;
 }
 
-let smallHeading = document.querySelector("#day-hour");
+let smallHeading = document.querySelector("h2");
 smallHeading.innerHTML = `${weekday}, ${month} ${dateMonth}, ${hour}:${minutes}`;
 
 // Update name of the city, temperature, and sub-menu data with API data on load
