@@ -39,16 +39,21 @@ if (minutes.toString().length == 1) {
 let smallHeading = document.querySelector("#day-hour");
 smallHeading.innerHTML = `${weekday}, ${month} ${dateMonth}, ${hour}:${minutes}`;
 
-// Update name of the city, temperature, and sub-menu data with API data
+// Update name of the city, temperature, and sub-menu data with API data on load
+let colors = [
+  "linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%)",
+  "linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%)",
+];
+
 
 function displayCityInfo(response) {
   console.log(response.data);
   document.querySelector(
     "h1"
   ).innerHTML = `${response.data.name}, ${response.data.sys.country}`;
-  document.querySelector("#temperature").innerHTML = Math.round(
-    response.data.main.temp
-  );
+  let mainTemperature = Math.round(
+    response.data.main.temp)
+  document.querySelector("#temperature").innerHTML = `${mainTemperature}˚`;
   document.querySelector("#weather-description").innerHTML =
     response.data.weather[0].description;
   document.querySelector("#temp-hi").innerHTML = Math.round(
@@ -61,11 +66,13 @@ function displayCityInfo(response) {
     response.data.main.feels_like
   );
   document.querySelector("#humidity").innerHTML = response.data.main.humidity;
+
 }
+let apiKey = "4cea025489823b86da62835c695c95d3";
+let apiUnit = "metric";
+
 
 function loadPage(cityName) {
-  let apiKey = "4cea025489823b86da62835c695c95d3";
-  let apiUnit = "metric";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}&units=${apiUnit}`;
 
   axios.get(apiUrl).then(displayCityInfo);

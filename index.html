@@ -13,8 +13,7 @@
     />
     <script
       src="https://kit.fontawesome.com/9d8e8e4082.js"
-      crossorigin="anonymous"
-    ></script>
+      crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
@@ -24,7 +23,7 @@
       <div class="card mt-5 shadow">
         <div class="card-body">
           <header>
-            <form id="form-city">
+            <form id="form-city"> 
               <input
                 type="text"
                 placeholder="Type city here"
@@ -44,18 +43,28 @@
             <h2>
               <small id="day-hour"></small>
             </h2>
+
             <p class="crnt-weather">
-              ☀️ <span id="weather-description"></span>
+              <span class="weather-icon">
+                <img src="#" alt="weather icon">
+              </span>
+            <span id="weather-description">27</span>
             </p>
-            <div class="temperature-display">
-              <span id="temperature"></span>
+           <div class="row">
+             <div class="col-2"></div>
+             <div class="col-10">
+               <div class="temperature-display">
+                 <span id="temperature"></span>
+                 <small class="tempt-unit">
+                   <a href="#" id="temperature-celsius">C</a>
+                   /
+                   <a href="#" id="temperature-fahrenheit">F</a>
+                  </small>
+                </div> 
               </div>
-              <small class="tempt-unit">
-                <a href="#" id="temperature-celsius">C</a>
-                /
-                <a href="#" id="temperature-fahrenheit">F</a>
-              </small>
-            </p>
+               </div>
+              </p>
+
             <div class="row">
               <div class="col-8 main-metadata"></div>
               <div class="col-4"></div>
@@ -82,35 +91,35 @@
 
         <section class="forecast-week">
           <ul>
-            <li class="nxt-day">
+            <li class="weekday">
               <i class="fas fa-cloud-sun"></i>
-              <div class="weekday">Monday</div>
-              <div class="hi-lo">24˚ | 23˚</div>
+              <div class="next-day">Monday</div>
+              <div class="next-day-temp">24˚ | 23˚</div>
             </li>
-            <li class="scnd-day">
+            <li class="weekday">
               <i class="fas fa-cloud"></i>
-              <div class="weekday">Tuesday</div>
-              <div class="hi-lo">22˚ | 19˚</div>
+              <div class="second-day">Tuesday</div>
+              <div class="second-day-temp">22˚ | 19˚</div>
             </li>
-            <li>
+            <li class="weekday">
               <i class="fas fa-cloud-showers-heavy"></i>
-              <div class="weekday">Wednesday</div>
-              <div class="hi-lo">20˚ | 15˚</div>
+              <div class="third-day">Wednesday</div>
+              <div class="third-day-temp">20˚ | 15˚</div>
             </li>
-            <li>
+            <li class="weekday">
               <i class="fas fa-cloud-sun"></i>
-              <div class="weekday">Thursday</div>
-              <div class="hi-lo">25˚ | 23˚</div>
+              <div class="fourth-day">Thursday</div>
+              <div class="fourth-day-temp">25˚ | 23˚</div>
             </li>
-            <li>
+            <li class="weekday">
               <i class="fas fa-wind"></i>
-              <div class="weekday">Friday</div>
-              <div class="hi-lo">30˚ | 27˚</div>
+              <div class="fifth-day">Friday</div>
+              <div class="fifth-day-temp">30˚ | 27˚</div>
             </li>
-            <li>
+            <li class="weekday">
               <i class="fas fa-sun"></i>
-              <div class="weekday">Saturday</div>
-              <div class="hi-lo">28˚ | 27˚</div>
+              <div class="sixth-day">Saturday</div>
+              <div class="sixth-day-temp">28˚ | 27˚</div>
             </li>
           </ul>
         </section>

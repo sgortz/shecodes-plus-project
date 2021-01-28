@@ -23,7 +23,6 @@ li {
 
 ul {
   list-style: none;
-  padding: 0;
 }
 
 footer {
@@ -76,19 +75,24 @@ footer {
 }
 
 .temperature-display {
+  
   font-size: 90px;
   margin: auto;
   display: inline;
   padding: 0;
 }
 
+.tempt-unit {
+  text-align: left;
+}
+
 #button-search:visited {
   color: red;
 }
 
-#city-input {
+/*#city-input {
   text-transform: capitalize;
-}
+}*/
 
 .crnt-weather {
   font-size: 30px;
