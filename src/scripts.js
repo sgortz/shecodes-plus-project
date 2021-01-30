@@ -13,7 +13,6 @@ let days = [
   "Wednesday",
   "Thursday",
   "Friday",
-  "Saturday",
 ];
 
 let monthName = [
@@ -97,8 +96,7 @@ fifthDay.innerHTML = days[now.getDay() + 5];
 let sixthDay = document.querySelector(".sixth-day");
 sixthDay.innerHTML = days[now.getDay() + 6];
 
-// Update name of the city, temperature, and sub-menu data with API data on load
-function displayCityInfo(response) {
+function getForecast(response) {
   console.log(response.data);
 
   let weatherIcon = document.querySelector("#weather-icon");
@@ -136,13 +134,7 @@ function displayCityInfo(response) {
     `${response.data.current.wind_speed}`
   );
 
-  // Forecast of the week
-  document.querySelector(".next-day-temp").innerHTML =
-    Math.round(`${response.data.daily[1].temp.max}`) +
-    "˚ | " +
-    Math.round(`${response.data.daily[1].temp.min}`) +
-    "˚";
-
+  // Updating forecast of the week
   let nextDayIcon = document.querySelector("#next-day-icon");
   nextDayIcon.setAttribute(
     "src",
@@ -153,10 +145,10 @@ function displayCityInfo(response) {
     `${response.data.daily[1].weather[0].description}`
   );
 
-  document.querySelector(".second-day-temp").innerHTML =
-    Math.round(`${response.data.daily[2].temp.max}`) +
+  document.querySelector(".next-day-temp").innerHTML =
+    `${Math.round(response.data.daily[1].temp.max)}` +
     "˚ | " +
-    Math.round(`${response.data.daily[2].temp.min}`) +
+    `${Math.round(response.data.daily[1].temp.min)}` +
     "˚";
 
   let secondDayIcon = document.querySelector("#second-day-icon");
@@ -169,10 +161,10 @@ function displayCityInfo(response) {
     `${response.data.daily[2].weather[0].description}`
   );
 
-  document.querySelector(".third-day-temp").innerHTML =
-    Math.round(`${response.data.daily[3].temp.max}`) +
+  document.querySelector(".second-day-temp").innerHTML =
+    `${Math.round(response.data.daily[2].temp.max)}` +
     "˚ | " +
-    Math.round(`${response.data.daily[3].temp.min}`) +
+    `${Math.round(response.data.daily[2].temp.min)}` +
     "˚";
 
   let thirdDayIcon = document.querySelector("#third-day-icon");
@@ -184,11 +176,10 @@ function displayCityInfo(response) {
     "alt",
     `${response.data.daily[3].weather[0].description}`
   );
-
-  document.querySelector(".fourth-day-temp").innerHTML =
-    Math.round(`${response.data.daily[4].temp.max}`) +
+  document.querySelector(".third-day-temp").innerHTML =
+    `${Math.round(response.data.daily[3].temp.max)}` +
     "˚ | " +
-    Math.round(`${response.data.daily[4].temp.min}`) +
+    `${Math.round(response.data.daily[3].temp.min)}` +
     "˚";
 
   let fourthDayIcon = document.querySelector("#fourth-day-icon");
@@ -201,10 +192,10 @@ function displayCityInfo(response) {
     `${response.data.daily[4].weather[0].description}`
   );
 
-  document.querySelector(".fifth-day-temp").innerHTML =
-    Math.round(`${response.data.daily[5].temp.max}`) +
+  document.querySelector(".fourth-day-temp").innerHTML =
+    `${Math.round(response.data.daily[4].temp.max)}` +
     "˚ | " +
-    Math.round(`${response.data.daily[5].temp.min}`) +
+    `${Math.round(response.data.daily[4].temp.min)}` +
     "˚";
 
   let fifthDayIcon = document.querySelector("#fifth-day-icon");
@@ -217,10 +208,10 @@ function displayCityInfo(response) {
     `${response.data.daily[5].weather[0].description}`
   );
 
-  document.querySelector(".sixth-day-temp").innerHTML =
-    Math.round(`${response.data.daily[6].temp.max}`) +
+  document.querySelector(".fifth-day-temp").innerHTML =
+    `${Math.round(response.data.daily[5].temp.max)}` +
     "˚ | " +
-    Math.round(`${response.data.daily[6].temp.min}`) +
+    `${Math.round(response.data.daily[5].temp.min)}` +
     "˚";
 
   let sixthDayIcon = document.querySelector("#sixth-day-icon");
@@ -233,84 +224,71 @@ function displayCityInfo(response) {
     `${response.data.daily[6].weather[0].description}`
   );
 
-  // Background color change
-  let colorBackground = document.querySelector(".card");
-  if (response.data.weather[0].main === forecast[0] && hour < 12) {
-    colorBackground.style.backgroundImage = colors[5];
-  } else if (response.data.weather[0].main === forecast[0] && hour >= 12) {
-    colorBackground.style.backgroundImage = colors[0];
-  } else if (response.data.weather[0].main === hour < 19) {
-    colorBackground.style.backgroundImage = colors[1];
-    colorBackground.style.color = "white";
-  } else if (response.data.weather[0].main === forecast[(10, 11)]) {
-    colorBackground.style.backgroundImage = colors[3];
-  } else if (response.data.weather[0].main === forecast[(12, 13)]) {
-    colorBackground.style.backgroundImage = colors[4];
-  } else {
-    colorBackground.style.backgroundImage = colors[2];
-  }
+  document.querySelector(".sixth-day-temp").innerHTML =
+    `${Math.round(response.data.daily[6].temp.max)}` +
+    "˚ | " +
+    `${Math.round(response.data.daily[6].temp.min)}` +
+    "˚";
 }
 
-/*
+function getCityCoords(response) {
+  document.querySelector(
+    "h1"
+  ).innerHTML = `${response.data.name}, ${response.data.sys.country}`;
+
+  let cityLatitude = response.data.coord.lat;
+  let cityLongitude = response.data.coord.lon;
+
+  let forecastapiKey = "87ea285fd528486819f9be1f3ac61b1d";
+  let forecastapiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${cityLatitude}&lon=${cityLongitude}&exclude=minutely,hourly&units=metric&appid=${forecastapiKey}`;
+
+  axios.get(forecastapiUrl).then(getForecast);
+}
+
+function search(cityName) {
+  let apiKey = "4cea025489823b86da62835c695c95d3";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${apiKey}`;
+
+  axios.get(apiUrl).then(getCityCoords);
+}
+
+function handleSearch(event) {
+  event.preventDefault();
+
+  let searchInput = document.querySelector("#city-input");
+
+  search(searchInput.value);
+}
+
+function showPosition(position) {
+  let latitude = position.coords.latitude;
+  let longitude = position.coords.longitude;
+
+  let forecastapiKey = "87ea285fd528486819f9be1f3ac61b1d";
+  let forecastapiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&exclude=minutely,hourly&units=metric&appid=${forecastapiKey}`;
+
+  axios.get(forecastapiUrl).then(getForecast);
+
+  let apiKey = "4cea025489823b86da62835c695c95d3";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${apiKey}`;
+
+  axios.get(apiUrl).then(function (response) {
     document.querySelector(
       "h1"
-      ).innerHTML = `${response.data.name}, ${response.data.sys.country}`;
-  */
-
-function loadPage(cityName) {
-  let apiKey = "4cea025489823b86da62835c695c95d3";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}&units=metric`;
-
-  axios.get(apiUrl).then(displayCityInfo);
+    ).innerHTML = `${response.data.name}, ${response.data.sys.country}`;
+  });
 }
 
-function searchCity(event) {
-  event.preventDefault();
-
-  let cityName = document.querySelector("#city-input").value;
-
-  loadPage(cityName);
-}
-
-let buttonSearch = document.querySelector("#search-button");
-buttonSearch.addEventListener("submit", searchCity);
-
-// Change the C to F links and show different temperatures
-function showTempCelsius(event) {
-  event.preventDefault();
-  document.querySelector("#crnt-tempt").innerHTML = "19˚";
-}
-
-function showTempFahrenheit(event) {
-  event.preventDefault();
-  document.querySelector("#crnt-tempt").innerHTML = "66˚";
-}
-
-let clickCelsius = document.querySelector("#temperature-celsius");
-clickCelsius.addEventListener("click", showTempCelsius);
-
-let clickFahrenheit = document.querySelector("#temperature-fahrenheit");
-clickFahrenheit.addEventListener("click", showTempFahrenheit);
-
-// Make Current City button to show current city & temperature of user
-
-function getCurrentLocation(response) {
-  let latitude = response.coords.latitude;
-  let longitude = response.coords.longitude;
-  let apiKey = "87ea285fd528486819f9be1f3ac61b1d";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&exclude=hourly,minutely&units=metric&appid=${apiKey}`;
-
-  axios.get(apiUrl).then(displayCityInfo);
-}
-
-// Handling button Current City
 function handleCurrentButton(event) {
   event.preventDefault();
 
-  navigator.geolocation.getCurrentPosition(getCurrentLocation);
+  navigator.geolocation.getCurrentPosition(showPosition);
 }
 
-let buttonCurrentCity = document.querySelector("#current-button");
-buttonCurrentCity.addEventListener("click", handleCurrentButton);
+let searchButton = document.querySelector("#search-button");
+searchButton.addEventListener("click", handleSearch);
 
-loadPage("New York");
+let currentButton = document.querySelector("#current-button");
+currentButton.addEventListener("click", handleCurrentButton);
+
+search("New York");
