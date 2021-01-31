@@ -98,16 +98,33 @@ sixthDay.innerHTML = days[now.getDay() + 6];
 
 function getForecast(response) {
   console.log(response.data);
+  let apiWeatherResponse = response.data.current.weather[0].main;
+  let apiIconResponse = response.data.current.weather[0].icon;
 
   let weatherIcon = document.querySelector("#weather-icon");
   weatherIcon.setAttribute(
     "src",
-    `http://openweathermap.org/img/wn/${response.data.current.weather[0].icon}@2x.png`
+    `http://openweathermap.org/img/wn/${apiIconResponse}@2x.png`
   );
   weatherIcon.setAttribute(
     "alt",
     `${response.data.current.weather[0].description}`
   );
+  let colorBackground = document.querySelector(".card");
+  if (apiIconResponse.includes("n")) {
+    colorBackground.style.backgroundImage = colors[1];
+    colorBackground.style.color = "whitesmoke";
+  } else if (apiWeatherResponse === forecast[0] && hour < 12) {
+    colorBackground.style.backgroundImage = colors[5];
+  } else if (apiWeatherResponse === forecast[0] && hour >= 12) {
+    colorBackground.style.backgroundImage = colors[0];
+  } else if (apiWeatherResponse === forecast[(10, 11)]) {
+    colorBackground.style.backgroundImage = colors[3];
+  } else if (apiWeatherResponse === forecast[(12, 13)]) {
+    colorBackground.style.backgroundImage = colors[4];
+  } else {
+    colorBackground.style.backgroundImage = colors[2];
+  }
 
   document.querySelector("#weather-description").innerHTML =
     response.data.current.weather[0].description;

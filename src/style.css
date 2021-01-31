@@ -24,7 +24,6 @@ a:link,
 a:visited {
   text-decoration: none;
   text-emphasis: none;
-  color: black;
 }
 
 li {
@@ -43,12 +42,7 @@ footer {
 
 .card {
   margin: 40px, 40px, 0;
-  /* BACKGROUND WHEN MORNING */
   background-image: linear-gradient(to top, #a8edea 0%, #fed6e3 100%);
-  /* BACKGROUND COLOR IF SUNSET OR SUNRISE
-  background-image: linear-gradient(to top, #a18cd1 0%, #fbc2eb 100%); */
-  /* BACKGROUND COLOR IF CLOUDY OR RAINY
-  background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%); */
 }
 
 .more-info,
@@ -76,11 +70,16 @@ footer {
   line-height: 40px;
 }
 
+.fa-stream {
+  transform: rotate(-90deg);
+}
 .temperature-display {
   font-size: 90px;
   margin: auto;
   display: inline;
   padding: 0;
+  position: relative;
+  left: 100px;
 }
 
 .temperature-display .temperature-unit {
