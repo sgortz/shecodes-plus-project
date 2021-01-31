@@ -129,8 +129,10 @@ function getForecast(response) {
   document.querySelector("#weather-description").innerHTML =
     response.data.current.weather[0].description;
 
+  celsiusMainTemperature = response.data.current.temp;
+
   let mainTemperature = document.querySelector("#temperature");
-  mainTemperature.innerHTML = `${Math.round(response.data.current.temp)}˚`;
+  mainTemperature.innerHTML = `${Math.round(celsiusMainTemperature)}`;
 
   document.querySelector("#feels-like").innerHTML = Math.round(
     response.data.current.feels_like
@@ -302,10 +304,24 @@ function handleCurrentButton(event) {
   navigator.geolocation.getCurrentPosition(showPosition);
 }
 
+function displayFahrenheitTemp(event) {
+  event.preventDefault();
+  let temperatureElement = document.querySelector("#temperature");
+  let fahrenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
+  temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
+}
+
 let searchButton = document.querySelector("#search-button");
 searchButton.addEventListener("click", handleSearch);
 
 let currentButton = document.querySelector("#current-button");
 currentButton.addEventListener("click", handleCurrentButton);
 
-search("New York");
+let celsiusMainTemperature = null;
+let celsiusFeelsLike = null;
+let celsiusHiLo = null;
+
+let fahrenheitLink = document.querySelector("#temperature-fahrenheit");
+fahrenheitLink.addEventListener("click", displayFahrenheitTemp);
+
+search("Bemidji");

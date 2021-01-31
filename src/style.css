@@ -26,6 +26,11 @@ a:visited {
   text-emphasis: none;
 }
 
+a:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
 li {
   display: inline-block;
   margin: 0 auto;
@@ -79,17 +84,15 @@ footer {
   display: inline;
   padding: 0;
   position: relative;
-  left: 100px;
-}
-
-.temperature-display .temperature-unit {
-  position: relative;
-  top: -56px;
+  left: 30px;
+  top: -4px;
 }
 
 .temperature-unit {
   font-size: 20px;
   text-align: left;
+  position: relative;
+  top: -49px;
 }
 
 .weather {
