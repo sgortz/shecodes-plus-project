@@ -116,35 +116,38 @@ function getForecast(response) {
     colorBackground.style.color = "whitesmoke";
   } else if (apiWeatherResponse === forecast[0] && hour < 12) {
     colorBackground.style.backgroundImage = colors[5];
+    colorBackground.style.color = "black";
   } else if (apiWeatherResponse === forecast[0] && hour >= 12) {
     colorBackground.style.backgroundImage = colors[0];
+    colorBackground.style.color = "black";
   } else if (apiWeatherResponse === forecast[(10, 11)]) {
     colorBackground.style.backgroundImage = colors[3];
+    colorBackground.style.color = "black";
   } else if (apiWeatherResponse === forecast[(12, 13)]) {
     colorBackground.style.backgroundImage = colors[4];
+    colorBackground.style.color = "black";
   } else {
     colorBackground.style.backgroundImage = colors[2];
+    colorBackground.style.color = "black";
   }
 
   document.querySelector("#weather-description").innerHTML =
     response.data.current.weather[0].description;
 
   celsiusMainTemperature = response.data.current.temp;
+  celsiusFeelsLike = response.data.current.feels_like;
+  celsiusTempHi = response.data.daily[0].temp.max;
+  celsiusTempLo = response.data.daily[0].temp.min;
 
   let mainTemperature = document.querySelector("#temperature");
   mainTemperature.innerHTML = `${Math.round(celsiusMainTemperature)}`;
 
-  document.querySelector("#feels-like").innerHTML = Math.round(
-    response.data.current.feels_like
-  );
+  let feelsLike = document.querySelector("#feels-like");
+  feelsLike.innerHTML = `${Math.round(celsiusFeelsLike)}`;
 
-  document.querySelector("#temp-hi").innerHTML = Math.round(
-    response.data.daily[0].temp.max
-  );
+  document.querySelector("#temp-hi").innerHTML = Math.round(celsiusTempHi);
 
-  document.querySelector("#temp-lo").innerHTML = Math.round(
-    response.data.daily[0].temp.min
-  );
+  document.querySelector("#temp-lo").innerHTML = Math.round(celsiusTempLo);
 
   document.querySelector("#humidity").innerHTML =
     response.data.current.humidity;
@@ -307,8 +310,49 @@ function handleCurrentButton(event) {
 function displayFahrenheitTemp(event) {
   event.preventDefault();
   let temperatureElement = document.querySelector("#temperature");
-  let fahrenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
+  let fahrenheitTemperature = (celsiusMainTemperature * 9) / 5 + 32;
   temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
+
+  let feelsLikeElement = document.querySelector("#feels-like");
+  let fahrenheitFeelsLike = (celsiusFeelsLike * 9) / 5 + 32;
+  feelsLikeElement.innerHTML = Math.round(fahrenheitFeelsLike);
+
+  let hiTempElement = document.querySelector("#temp-hi");
+  let fahrenheitTempHi = (celsiusTempHi * 9) / 5 + 32;
+  hiTempElement.innerHTML = Math.round(fahrenheitTempHi);
+
+  let loTempElement = document.querySelector("#temp-lo");
+  let fahrenheitTempLo = (celsiusTempLo * 9) / 5 + 32;
+  loTempElement.innerHTML = Math.round(fahrenheitTempLo);
+
+  celsiusLink.classList.remove("active");
+  fahrenheitLink.classList.add("active");
+}
+
+function displayCelsiusTemperature(event) {
+  event.preventDefault();
+  let temperatureElement = document.querySelector("#temperature");
+  temperatureElement.innerHTML = Math.round(celsiusMainTemperature);
+
+  let feelsLikeElement = document.querySelector("#feels-like");
+  feelsLikeElement.innerHTML = Math.round(celsiusFeelsLike);
+
+  let hiTempElement = document.querySelector("#temp-hi");
+  hiTempElement.innerHTML = Math.round(celsiusTempHi);
+
+  let loTempElement = document.querySelector("#temp-lo");
+  loTempElement.innerHTML = Math.round(celsiusTempLo);
+
+  /*let nextDayTemp = document.querySelector(".next-day-temp");
+  nextDayTemp.innerHTML = Math.round(celsiusNextDayTemp);
+
+  let secondDayTemp = document.querySelector(".second-day-temp");
+  secondDayTemp.innerHTML = Math.round(celsiusSecondDayTemp);
+
+  let*/
+
+  fahrenheitLink.classList.remove("active");
+  celsiusLink.classList.add("active");
 }
 
 let searchButton = document.querySelector("#search-button");
@@ -319,9 +363,21 @@ currentButton.addEventListener("click", handleCurrentButton);
 
 let celsiusMainTemperature = null;
 let celsiusFeelsLike = null;
-let celsiusHiLo = null;
+let celsiusTempHi = null;
+let celsiusTempLo = null;
+let milesPerHour = null;
+
+let celsiusNextDayTemp = null;
+let celsiusSecondDayTemp = null;
+let celsiusThirdDayTemp = null;
+let celsiusFourthDayTemp = null;
+let celsiusFifthDayTemp = null;
+let celsiusSixthDayTemp = null;
 
 let fahrenheitLink = document.querySelector("#temperature-fahrenheit");
 fahrenheitLink.addEventListener("click", displayFahrenheitTemp);
+
+let celsiusLink = document.querySelector("#temperature-celsius");
+celsiusLink.addEventListener("click", displayCelsiusTemperature);
 
 search("Bemidji");

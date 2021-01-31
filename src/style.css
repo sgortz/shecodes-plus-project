@@ -8,6 +8,7 @@ header {
 }
 
 h1 {
+  font-size: 50px;
   margin-bottom: 20px;
 }
 
@@ -20,13 +21,11 @@ section {
   margin: 20px 20px;
 }
 
-a:link,
-a:visited {
+a:link {
   text-decoration: none;
-  text-emphasis: none;
 }
 
-a:hover {
+footer a:hover {
   text-decoration: underline;
   cursor: pointer;
 }
@@ -86,6 +85,15 @@ footer {
   position: relative;
   left: 30px;
   top: -4px;
+}
+
+.temperature-display .active {
+  color: black;
+  cursor: default;
+}
+
+.temperature-display .active:hover {
+  text-decoration: none;
 }
 
 .temperature-unit {
