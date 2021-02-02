@@ -45,8 +45,8 @@ footer {
 }
 
 .card {
-  margin: 40px, 40px, 0;
-  background-image: linear-gradient(to top, #a8edea 0%, #fed6e3 100%);
+  margin: 40px, 40px;
+  border-radius: 27px;
 }
 
 .more-info,

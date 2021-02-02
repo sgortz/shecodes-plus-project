@@ -52,7 +52,7 @@ let colors = [
   //clear sky daylight
   "linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%)",
   //clear sky nighttime -- font color whitesmoke
-  "linear-gradient(to top, #09203f 0%, #537895 100%)",
+  "linear-gradient(to top, #537895 2%, #09203f 98%)",
   //rainy or cloudy
   "linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%)",
   //sand, Dust
