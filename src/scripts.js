@@ -101,6 +101,17 @@ function getForecast(response) {
   let apiWeatherResponse = response.data.current.weather[0].main;
   let apiIconResponse = response.data.current.weather[0].icon;
 
+  let unixTimestamp = response.data.current.dt;
+  let timezoneOffset = response.data.timezone_offset;
+  let localUnixTimestamp = unixTimestamp + timezoneOffset;
+  let millisecondsTime = localUnixTimestamp * 1000;
+
+  let dateElement = new Date(millisecondsTime);
+
+  let humanDateFormat = dateElement.toLocaleTimeString();
+
+  smallHeading.innerHTML = `${weekday}, ${month} ${dateMonth}, ${humanDateFormat}`;
+
   let weatherIcon = document.querySelector("#weather-icon");
   weatherIcon.setAttribute(
     "src",
