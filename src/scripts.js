@@ -102,9 +102,9 @@ function getForecast(response) {
   let apiIconResponse = response.data.current.weather[0].icon;
 
   let unixTimestamp = response.data.current.dt;
-  let timezoneOffset = response.data.timezone_offset;
-  let localUnixTimestamp = unixTimestamp + timezoneOffset;
-  let millisecondsTime = localUnixTimestamp * 1000;
+  //let timezoneOffset = response.data.timezone_offset;
+  //let localUnixTimestamp = unixTimestamp + timezoneOffset;
+  let millisecondsTime = unixTimestamp * 1000;
 
   let dateElement = new Date(millisecondsTime);
 
@@ -299,6 +299,8 @@ function showPosition(position) {
 
   let forecastapiKey = "87ea285fd528486819f9be1f3ac61b1d";
   let forecastapiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&exclude=minutely,hourly&units=metric&appid=${forecastapiKey}`;
+
+  console.log(forecastapiUrl);
 
   axios.get(forecastapiUrl).then(getForecast);
 
